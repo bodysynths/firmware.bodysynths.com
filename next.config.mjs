@@ -6,7 +6,7 @@ const nextConfig = {
   distDir: 'build',
   output: 'export',
   // assetPrefix: isProd ? '/static/' : undefined,
-  basePath: isProd ? '/body-synths-firmare' : undefined,
+  basePath: isProd ? '/body-synths-firmware' : undefined,
 }
 
 export default nextConfig
