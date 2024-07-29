@@ -30,7 +30,7 @@ export default function Programmer() {
 
   const programThisDevice = async () => {
     console.log(device);
-    programDevice(device, setDevice, firmwareFile, manifestationTolerant);
+    programDevice(device, setDevice, firmwareBinFile, manifestationTolerant);
   };
 
   return (

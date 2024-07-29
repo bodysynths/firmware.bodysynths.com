@@ -76,7 +76,7 @@ export default function ReleaseSelector() {
               Release Notes {rel ? `(${rel.title})` : ""}
             </summary>
             <div className="collapse-content">
-              <ul class="list-disc pl-5 space-y-2">
+              <ul className="list-disc pl-5 space-y-2">
                 {rel.release_notes.map((note, idx) => (
                   <li key={idx}>{note}</li>
                 ))}

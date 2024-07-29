@@ -24,7 +24,7 @@ export default function Connector() {
   );
 
   const setDevice = (d) => {
-    useStore.setState({ firmwareBinFile: d });
+    useStore.setState({ device: d });
   };
 
   const setManifestationTolerant = (m) => {
