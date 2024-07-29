@@ -6,7 +6,7 @@ const basePath = isProd ? "/body-synths-firmware" : undefined;
 const nextConfig = {
   distDir: "build",
   output: "export",
-  assetPrefix: isProd ? basePath + "/static/" : undefined,
+  assetPrefix: basePath,
   basePath: basePath,
 
   env: {
