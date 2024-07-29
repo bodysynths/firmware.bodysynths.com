@@ -14,6 +14,9 @@ import {
 
 import ReleaseSelector from "./ReleaseSelector";
 
+const isProduction = process.env.NODE_ENV === "production";
+const basePath = isProduction ? process.env.NEXT_PUBLIC_BASE_PATH : "";
+
 export default function Home() {
   const [device, setDevice] = useState(null);
   const [status, setStatus] = useState("");
@@ -23,7 +26,9 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchBinaryFile() {
-      const data = await loadBinaryFile("blink-versions/blink-v2.bin");
+      const data = await loadBinaryFile(
+        basePath + "blink-versions/blink-v2.bin"
+      );
       if (data) {
         setFirmwareFile(data);
         console.log(data);

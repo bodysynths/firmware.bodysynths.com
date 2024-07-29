@@ -114,7 +114,7 @@ function ReleaseSelector() {
 
       const { data } = response;
 
-      console.log(response);
+      // console.log(response);
 
       // Convert the response to an ArrayBuffer
       const arrayBuffer = await response.arrayBuffer();
