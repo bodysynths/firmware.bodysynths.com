@@ -13,16 +13,6 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: process.env.BASE_PATH,
   },
-
-  webpack(config, { isServer }) {
-    if (!isServer) {
-      console.log(
-        "NEXT_PUBLIC_BASE_PATH from next.config.js: ",
-        process.env.BASE_PATH
-      );
-    }
-    return config;
-  },
 };
 
 export default nextConfig;

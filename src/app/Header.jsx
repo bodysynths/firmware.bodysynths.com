@@ -1,3 +1,5 @@
+"use client";
+
 import { getAssetPath } from "./utils";
 
 export default function Header() {
