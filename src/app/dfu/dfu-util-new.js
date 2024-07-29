@@ -18,7 +18,7 @@ import {
 
 export async function loadBinaryFile(filename) {
   try {
-    const response = await fetch(`/${filename}`);
+    const response = await fetch(`${filename}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

@@ -1,17 +1,13 @@
 /** @type {import('next').NextConfig} */
 
 const isProd = process.env.NODE_ENV === "production";
-const basePath = isProd ? "/body-synths-firmware" : undefined;
+const basePath = isProd ? "/body-synths-firmware" : "";
 
 const nextConfig = {
   distDir: "build",
   output: "export",
-  assetPrefix: basePath,
-  basePath: basePath,
-
-  env: {
-    NEXT_PUBLIC_GITHUB_API_TOKEN: process.env.GITHUB_API_TOKEN,
-  },
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH,
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH,
 };
 
 export default nextConfig;
