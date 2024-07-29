@@ -20,8 +20,8 @@ export default function Dropdown({ options, onSelect, curOption }) {
 
   return (
     <div className="dropdown">
-      <button className="btn m-1" onClick={() => setIsOpen(true)}>
-        {curOption ? curOption.title : "Select Firmware"}
+      <button className="btn m-1" onClick={() => setIsOpen(!isOpen)}>
+        {curOption && false ? curOption.title : "Select Firmware Version"}
       </button>
       {/* <button onClick={toggleDropdown} className="btn btn-primary">
         {curOption ? curOption.title : "Select Firmware"}
@@ -31,7 +31,9 @@ export default function Dropdown({ options, onSelect, curOption }) {
         <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
           {options.map((option, idx) => (
             <li key={idx}>
-              <button onClick={() => handleClick(idx)}>{option.title}</button>
+              <button className="btn" onClick={() => handleClick(idx)}>
+                {option.title}
+              </button>
             </li>
           ))}
         </ul>

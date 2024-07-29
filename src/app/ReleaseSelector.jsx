@@ -56,26 +56,39 @@ export default function ReleaseSelector() {
       });
   }, [selectedRelease]);
 
+  const rel = selected ? releases[selectedRelease] : null;
+
   return (
     <div className="card bg-primary text-primary-content w-full">
       <div className="card-body">
         <h2 className="card-title">Select a Release</h2>
-        <p>
-          {firmwareBinFile ? (
-            <>
-              Firmware binary loaded successfully for{" "}
-              {releases[selectedRelease].title}. Size: {firmwareBinFile.length}{" "}
-              bytes
-            </>
-          ) : (
-            <>Select a file to load.</>
-          )}
-        </p>
+        {firmwareBinFile ? (
+          <p>
+            Firmware binary loaded successfully for {rel.title}. Size:{" "}
+            {firmwareBinFile.length} bytes
+          </p>
+        ) : (
+          <p>Select a file to load.</p>
+        )}
+        {rel && (
+          <details className="collapse bg-base-200 text-gray-300 collapse-arrow">
+            <summary className="collapse-title">
+              Release Notes {rel ? `(${rel.title})` : ""}
+            </summary>
+            <div className="collapse-content">
+              <ul class="list-disc pl-5 space-y-2">
+                {rel.release_notes.map((note, idx) => (
+                  <li key={idx}>{note}</li>
+                ))}
+              </ul>
+            </div>
+          </details>
+        )}
         <div className="card-actions justify-end">
           <Dropdown
             options={releases}
             onSelect={setSelectedRelease}
-            curOption={releases[selectedRelease]}
+            curOption={rel}
           />
         </div>
       </div>
