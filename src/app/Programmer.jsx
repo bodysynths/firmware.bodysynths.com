@@ -25,7 +25,7 @@ export default function Programmer() {
   );
 
   const setDevice = (d) => {
-    useStore.setState({ firmwareBinFile: d });
+    useStore.setState({ device: d });
   };
 
   const programThisDevice = async () => {
