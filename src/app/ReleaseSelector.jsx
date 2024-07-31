@@ -12,23 +12,10 @@ export default function ReleaseSelector() {
   const [selectedRelease, setSelectedRelease] = useState("");
 
   const firmwareBinFile = useStore((state) => state.firmwareBinFile);
+  const releasesAll = useStore((state) => state.releases);
+  const instrument = useStore((state) => state.instrument);
 
   const selected = typeof selectedRelease === "number";
-
-  useEffect(() => {
-    // Fetch the releases.json file from the public directory
-    fetch(getAssetPath("releases.json"))
-      .then((response) => response.json())
-      .then((data) => {
-        const sortedReleases = data.data.sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
-        );
-        setReleases(sortedReleases);
-      })
-      .catch((error) => {
-        console.error("Error fetching releases:", error);
-      });
-  }, []);
 
   useEffect(() => {
     // Set the most recent release when the releases state changes
@@ -36,6 +23,10 @@ export default function ReleaseSelector() {
       setSelectedRelease(0);
     }
   }, [releases]);
+
+  useEffect(() => {
+    setReleases(releasesAll.filter((item) => item.instrument === instrument));
+  }, [instrument]);
 
   useEffect(() => {
     if (!selected) {

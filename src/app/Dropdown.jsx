@@ -1,7 +1,7 @@
 // components/Dropdown.js
 import { useState } from "react";
 
-export default function Dropdown({ options, onSelect, curOption }) {
+export default function Dropdown({ options, onSelect, curOption, title }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -19,26 +19,26 @@ export default function Dropdown({ options, onSelect, curOption }) {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown space-x-1 dropdown-right">
       <button
-        className="btn m-1 btn-primary"
+        className="btn btn-primary btn-outline"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {curOption && false ? curOption.title : "Select Firmware Version"}
+        {curOption && false ? curOption.title : title}
       </button>
       {/* <button onClick={toggleDropdown} className="btn btn-primary">
         {curOption ? curOption.title : "Select Firmware"}
       </button> */}
 
       {isOpen && (
-        <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+        <ul className="menu dropdown-content bg-black rounded-box z-[1] p-2 space-y-2">
           {options.map((option, idx) => (
             <li key={idx}>
               <button
-                className="btn btn-primary"
-                onClick={() => handleClick(idx)}
+                className="btn btn-primary btn-outline"
+                onClick={() => handleClick(option)}
               >
-                {option.title}
+                {option}
               </button>
             </li>
           ))}
