@@ -19,9 +19,9 @@ export default function Dropdown({ options, onSelect, curOption, title }) {
   };
 
   return (
-    <div className="dropdown space-x-1 dropdown-right">
+    <div className="dropdown space-y-1 w-full">
       <button
-        className="btn btn-primary btn-outline"
+        className="btn btn-primary btn-outline w-full"
         onClick={() => setIsOpen(!isOpen)}
       >
         {curOption && false ? curOption.title : title}
@@ -31,7 +31,7 @@ export default function Dropdown({ options, onSelect, curOption, title }) {
       </button> */}
 
       {isOpen && (
-        <ul className="menu dropdown-content bg-black rounded-box z-[1] p-2 space-y-2">
+        <ul className="menu dropdown-content bg-white rounded-box z-[1] p-2 space-y-2 w-full shadow">
           {options.map((option, idx) => (
             <li key={idx}>
               <button

@@ -51,7 +51,7 @@ export default function ReleaseSelector() {
 
   return (
     <div className="card bg-white text-primary-content w-full">
-      <div className="card-body">
+      <div className="card-body space-y-2">
         <h2 className="card-title">Firmware</h2>
         {/* {firmwareBinFile ? (
           <p>
@@ -61,47 +61,50 @@ export default function ReleaseSelector() {
         ) : (
           <p>Select a file to load.</p>
         )} */}
+        <div className="space-y-2">
+          {releases.map((firmVer, idx) => {
+            return (
+              <div
+                className="collapse collapse-plus bg-white outline"
+                key={idx}
+              >
+                <input
+                  type="radio"
+                  name="my-accordion-3"
+                  defaultChecked={idx == 0}
+                />
+                <div className="collapse-title font-bold">{firmVer.title}</div>
+                <div className="collapse-content space-y-4">
+                  <div>
+                    <div> Release Notes:</div>
 
-        {releases.map((firmVer, idx) => {
-          return (
-            <div
-              className="collapse collapse-plus bg-base-200 text-white"
-              key={idx}
-            >
-              <input
-                type="radio"
-                name="my-accordion-3"
-                defaultChecked={idx == 0}
-              />
-              <div className="collapse-title ">{firmVer.title}</div>
-              <div className="collapse-content space-y-4">
-                <div>
-                  <div> Release Notes:</div>
-
-                  <ul className="list-disc pl-5 space-y-2">
-                    {firmVer.release_notes.map((note, idx) => (
-                      <li key={idx}>{note}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <button
-                    className={`${
-                      selectedRelease != idx ? "" : "btn-disabled"
-                    } btn-primary btn btn-outline`}
-                    onClick={() => setSelectedRelease(idx)}
-                  >
-                    {selectedRelease != idx
-                      ? "Select This Version"
-                      : "This Version Selected"}
-                  </button>
+                    <ul className="list-disc pl-5 space-y-2">
+                      {firmVer.release_notes.map((note, idx) => (
+                        <li key={idx}>{note}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <button
+                      className={`${
+                        selectedRelease != idx ? "" : "btn-disabled"
+                      } btn-primary btn btn-outline`}
+                      onClick={() => setSelectedRelease(idx)}
+                    >
+                      {selectedRelease != idx
+                        ? "Select This Version"
+                        : "This Version Selected"}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-
-        <div>Selected Firmware Version: {rel ? rel.title : "None"}</div>
+            );
+          })}
+        </div>
+        <div>
+          {"Selected Firmware Version: "}
+          <span className="font-bold">{rel ? rel.title : "None"}</span>
+        </div>
 
         {/* {rel && (
           <details className="collapse bg-base-200 text-gray-300 collapse-arrow">

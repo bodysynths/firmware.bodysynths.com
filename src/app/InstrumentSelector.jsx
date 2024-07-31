@@ -47,9 +47,9 @@ export default function ReleaseSelector() {
   }, [releases]);
 
   return (
-    <div className="card bg-white text-primary-content w-full space-y-2">
-      <div className="card-body">
-        <h2 className="card-title">Instrument ({instrument})</h2>
+    <div className="card bg-white text-primary-content w-full">
+      <div className="card-body space-y-2">
+        <h2 className="card-title">Instrument</h2>
         <div className="card-actions ">
           <Dropdown
             options={instruments}
@@ -57,6 +57,10 @@ export default function ReleaseSelector() {
             curOption={instrument}
             title={"Select Instrument"}
           />
+        </div>
+        <div>
+          {"Selected Instrument: "}
+          <span className="font-bold">{instrument ? instrument : "None"}</span>
         </div>
       </div>
     </div>
