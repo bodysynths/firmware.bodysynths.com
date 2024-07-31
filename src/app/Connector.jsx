@@ -54,7 +54,7 @@ export default function Connector() {
     <div className="card bg-white text-primary-content w-full">
       <div className="card-body">
         <h2 className="card-title">Connect Device</h2>
-        <article className="prose text-primary-content">
+        <article className="prose text-primary-content max-w-none">
           <div dangerouslySetInnerHTML={{ __html: marked(instructions) }}></div>
         </article>
         {/* <p>{device ? `Connected to device` : "No Device Connected"}</p> */}
