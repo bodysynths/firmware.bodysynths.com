@@ -12,7 +12,7 @@ dfuse.Device = function (device, settings) {
   this.memoryInfo = null;
   this.startAddress = NaN;
   if (settings.name) {
-    console.log("parseMemoryDescriptor");
+    // console.log("parseMemoryDescriptor");
     this.memoryInfo = dfuse.parseMemoryDescriptor(settings.name);
   }
 };
@@ -290,8 +290,8 @@ dfuse.Device.prototype.do_download = async function (
 
   this.logInfo("Manifesting new firmware dfuse.js");
   try {
-    console.log("Manifesting address");
-    console.log("Manifesting address", dfuse.SET_ADDRESS, startAddress);
+    // console.log("Manifesting address");
+    // console.log("Manifesting address", dfuse.SET_ADDRESS, startAddress);
 
     await this.dfuseCommand(dfuse.SET_ADDRESS, startAddress, 4);
     await this.download(new ArrayBuffer(), 0);
@@ -300,7 +300,7 @@ dfuse.Device.prototype.do_download = async function (
   }
 
   try {
-    console.log("Manifesting poll_until", this.device);
+    // console.log("Manifesting poll_until", this.device);
     console.trace();
     await this.poll_until((state) => state == dfu.dfuMANIFEST);
   } catch (error) {

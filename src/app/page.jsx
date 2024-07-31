@@ -10,10 +10,10 @@ import Programmer from "./Programmer";
 export default function Home() {
   return (
     <div className="flex flex-col items-center min-h-screen py-8 font-mono">
-      <div className="items-center grid gap-6">
+      <div className="items-center grid gap-6 w-3/5">
         <Header />
-        <Connector />
         <ReleaseSelector />
+        <Connector />
         <Programmer />
       </div>
     </div>
