@@ -4,13 +4,15 @@
       "title": "Blink v1",
       "release_notes": ["Note 1", "Note 2"],
       "file": "blink-v1",
-      "date": "2024-07-29"
+      "date": "2024-07-29",
+      "instrument": "metal fetishist"
     },
     {
       "title": "Blink v2",
       "release_notes": ["Note 1.2", "Note 2.2"],
       "file": "blink-v2",
-      "date": "2024-07-31"
+      "date": "2024-07-31",
+      "instrument": "metal fetishist"
     }
   ]
 }
