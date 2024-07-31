@@ -52,7 +52,7 @@ export default function ReleaseSelector() {
   return (
     <div className="card bg-white text-primary-content w-full">
       <div className="card-body space-y-2">
-        <h2 className="card-title">Firmware</h2>
+        <h2 className="card-title">Firmware Version</h2>
         {/* {firmwareBinFile ? (
           <p>
             Firmware binary loaded successfully for {rel.title}. Size:{" "}
