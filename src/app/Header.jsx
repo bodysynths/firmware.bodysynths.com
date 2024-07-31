@@ -4,7 +4,7 @@ import { getAssetPath } from "./utils";
 
 export default function Header() {
   return (
-    <div className="card text-primary-content w-full">
+    <div className="card text-white w-full items-center ">
       <a href="https://bodysynths.com/">
         <img
           className="w-full"
@@ -12,6 +12,7 @@ export default function Header() {
           alt="Example Image"
         />
       </a>
+      <div>Firmware Update Utility</div>
     </div>
   );
 }

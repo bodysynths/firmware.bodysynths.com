@@ -44,7 +44,7 @@ export default function Programmer() {
 
   return (
     <div className="card bg-white text-primary-content w-full">
-      <div className="card-body">
+      <div className="card-body space-y-4">
         <h2 className="card-title">Update Device</h2>
         <progress
           className="progress progress-primary w-full"

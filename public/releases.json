@@ -1,18 +1,32 @@
 {
   "data": [
     {
-      "title": "Blink v1",
+      "title": "MF Blink v1",
       "release_notes": ["Note 1", "Note 2"],
       "file": "blink-v1",
       "date": "2024-07-29",
       "instrument": "metal fetishist"
     },
     {
-      "title": "Blink v2",
+      "title": "MF Blink v2",
       "release_notes": ["Note 1.2", "Note 2.2"],
       "file": "blink-v2",
       "date": "2024-07-31",
       "instrument": "metal fetishist"
+    },
+    {
+      "title": "OTHER Blink v1",
+      "release_notes": ["Nnnnote 1", "Nnnnote 2"],
+      "file": "blink-v1",
+      "date": "2024-07-29",
+      "instrument": "other"
+    },
+    {
+      "title": "OTHER Blink v2",
+      "release_notes": ["Nnnnote 1.2", "Nnnnote 2.2"],
+      "file": "blink-v2",
+      "date": "2024-07-31",
+      "instrument": "other"
     }
   ]
 }
