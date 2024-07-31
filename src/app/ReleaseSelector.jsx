@@ -93,7 +93,7 @@ export default function ReleaseSelector() {
                     >
                       {selectedRelease != idx
                         ? "Select This Version"
-                        : "This Version Selected"}
+                        : "This Version is Selected"}
                     </button>
                   </div>
                 </div>

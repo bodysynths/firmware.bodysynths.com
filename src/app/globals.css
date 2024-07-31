@@ -11,3 +11,10 @@ body {
   /* width: 100vw;
   height: 100vh; */
 }
+
+.btn-disabled {
+  @apply !opacity-50;
+  @apply !text-primary;
+  @apply !bg-white;
+  /* @apply !cursor-not-allowed; */
+  }
