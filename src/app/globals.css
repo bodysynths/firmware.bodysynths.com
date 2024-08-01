@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --rounded-box: 0rem;
+  /* --btn-color: black; */
+  --fallback-bc: white;
+  --rounded-btn: 0rem;
+}
+
+:root .prose {
+  --tw-prose-counters: black;
+}
+
 body {
   background-color: black;
   /* color: white; */
@@ -14,7 +25,12 @@ body {
 
 .btn-disabled {
   @apply !opacity-50;
-  @apply !text-primary;
-  @apply !bg-white;
-  /* @apply !cursor-not-allowed; */
-  }
+  @apply !btn-outline; 
+  @apply !text-black;
+  @apply !bg-white; 
+  
+}
+
+.progress-text {
+  mix-blend-mode: difference;
+}

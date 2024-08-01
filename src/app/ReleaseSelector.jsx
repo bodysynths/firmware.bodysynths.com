@@ -88,7 +88,7 @@ export default function ReleaseSelector() {
                     <button
                       className={`${
                         selectedRelease != idx ? "" : "btn-disabled"
-                      } btn-primary btn btn-outline`}
+                      } btn`}
                       onClick={() => setSelectedRelease(idx)}
                     >
                       {selectedRelease != idx

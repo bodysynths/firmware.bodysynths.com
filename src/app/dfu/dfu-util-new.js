@@ -79,7 +79,7 @@ export const connect = async (device, setManifestationTolerant) => {
 };
 
 export const onDisconnect = () => {
-  console.log("DISCONNECTED");
+  // console.log("DISCONNECTED");
 };
 
 export const connectDevice = async (
@@ -136,9 +136,10 @@ export const programDevice = async (
   device,
   setDevice,
   firmwareFile,
-  manifestationTolerant
+  manifestationTolerant,
+  setDone
 ) => {
-  console.log("PROGRAM");
+  // console.log("PROGRAM");
   const transferSize = 1024;
   if (device && firmwareFile != null) {
     // setLogContext(downloadLog);
@@ -155,7 +156,7 @@ export const programDevice = async (
       .do_download(transferSize, firmwareFile, manifestationTolerant)
       .then(
         () => {
-          console.log("PROGRAM DONE");
+          // console.log("PROGRAM DONE");
           // logInfo("Done!");
           // setLogContext(null);
           if (!manifestationTolerant) {
@@ -163,6 +164,7 @@ export const programDevice = async (
               (dev) => {
                 onDisconnect();
                 setDevice(null);
+                setDone();
               },
               (error) => {
                 // It didn't reset and disconnect for some reason...

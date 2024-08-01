@@ -19,6 +19,8 @@ import { useStore } from "./store";
 
 export default function Programmer() {
   const [progress, setProgress] = useState(0);
+  const [done, setDone] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const firmwareBinFile = useStore((state) => state.firmwareBinFile);
   const device = useStore((state) => state.device);
@@ -26,42 +28,71 @@ export default function Programmer() {
     (state) => state.manifestationTolerant
   );
 
+  const enabled = firmwareBinFile && device && done;
+
+  console.log(device != null, firmwareBinFile != null, done);
+
   const setDevice = (d) => {
     useStore.setState({ device: d });
   };
 
+  const onFinish = () => {
+    setDone(true);
+    // setProgress(0);
+  };
+
+  useEffect(() => {
+    if (enabled && progress == 100) {
+      setProgress(0);
+    }
+  }, [device]);
+
   const programThisDevice = async () => {
-    // console.log(device);
-    programDevice(device, setDevice, firmwareBinFile, manifestationTolerant);
+    if (!enabled) {
+      return;
+    }
+    setLoading(true);
+    programDevice(
+      device,
+      setDevice,
+      firmwareBinFile,
+      manifestationTolerant,
+      onFinish
+    );
   };
 
   if (device) {
-    device.logProgress = (done, total) => {
-      setProgress((100 * done) / total);
-      console.log(done, total);
+    device.logProgress = (prog, total) => {
+      if (loading && prog > 0 && prog < total) {
+        setDone(false);
+        setLoading(false);
+      }
+      setProgress((100 * prog) / total);
     };
   }
 
   return (
-    <div className="card bg-white text-primary-content w-full">
-      <div className="card-body space-y-4">
-        <h2 className="card-title">Update Device</h2>
-        <progress
-          className="progress progress-primary w-full"
-          value={progress}
-          max="100"
-        ></progress>
-        <div className="card-actions justify-end">
-          <button
-            className={`${
-              firmwareBinFile && device ? "" : "btn-disabled"
-            } btn-primary btn btn-outline`}
-            onClick={programThisDevice}
-          >
-            Update Device
-          </button>
-        </div>
-      </div>
-    </div>
+    <button
+      className={`${
+        enabled && !loading ? "" : "btn-disabled"
+      } radial-progress bg-black text-white border-black border ${
+        !loading && !done ? "cursor-default" : ""
+      }`}
+      style={{
+        "--value": progress,
+        "--thickness": progress == 0 ? 0 : "calc(var(--size) / 10)",
+        "--size": "8rem",
+      }}
+      role="progressbar"
+      onClick={programThisDevice}
+    >
+      {loading
+        ? "Updating"
+        : enabled || progress == 0
+        ? "Update"
+        : progress == 100
+        ? "Done"
+        : progress.toFixed(0) + "%"}
+    </button>
   );
 }
