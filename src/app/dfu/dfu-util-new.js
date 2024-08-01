@@ -85,7 +85,10 @@ export const onDisconnect = () => {
 export const connectDevice = async (
   device,
   setDevice,
-  setManifestationTolerant
+  setManifestationTolerant,
+  logError = (error) => {
+    console.log(error);
+  }
 ) => {
   if (device) {
     device.close().then(onDisconnect);
@@ -112,7 +115,7 @@ export const connectDevice = async (
             ifc.name.includes("0x08000000")
           );
           if (filteredInterfaceList.length === 0) {
-            console.log("No interace with flash address 0x08000000 found.");
+            logError("No interace with flash address 0x08000000 found.");
             statusDisplay.textContent =
               "The selected device does not have a Flash Memory sectiona at address 0x08000000.";
           } else {
@@ -127,7 +130,7 @@ export const connectDevice = async (
       }
     })
     .catch((error) => {
-      console.log(error);
+      logError(error);
     });
 };
 
@@ -167,14 +170,14 @@ export const programDevice = async (
               },
               (error) => {
                 // It didn't reset and disconnect for some reason...
-                console.log("Device unexpectedly tolerated manifestation.");
+                device.logError("Device unexpectedly tolerated manifestation.");
               }
             );
           }
         },
         (error) => {
-          console.log("PROGRAM ERROR");
-          console.log(error);
+          // console.log("PROGRAM ERROR");
+          device.logError(error);
         }
       );
   }

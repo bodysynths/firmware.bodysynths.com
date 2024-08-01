@@ -72,13 +72,17 @@ export default function Programmer() {
       setProgress(per);
     };
 
-    // device.logError = (msg) => {
-    //   useStore.setState({
-    //     device: null,
-    //     errorModal: true,
-    //     errorMsg: msg,
-    //   });
-    // };
+    device.logError = (msg) => {
+      setLoading(false);
+      setDone(true);
+      setProgress(0);
+
+      useStore.setState({
+        device: null,
+        errorModal: true,
+        errorMsg: msg,
+      });
+    };
   }
 
   return (
@@ -103,7 +107,8 @@ export default function Programmer() {
       )}
       {loading ? (
         <>
-          Updating <span className="loading loading-dots loading-xs"></span>
+          Erasing Memory{" "}
+          <span className="loading loading-spinner loading-xs"></span>
         </>
       ) : enabled || progress == 0 ? (
         `Update to ${firmwareName}`
