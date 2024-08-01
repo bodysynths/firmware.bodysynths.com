@@ -27,6 +27,7 @@ export default function Programmer() {
   const manifestationTolerant = useStore(
     (state) => state.manifestationTolerant
   );
+  const firmwareName = useStore((state) => state.firmwareName);
 
   const enabled = firmwareBinFile && device && done;
 
@@ -67,31 +68,60 @@ export default function Programmer() {
         setDone(false);
         setLoading(false);
       }
-      setProgress((100 * prog) / total);
+      const per = (100 * prog) / total;
+      setProgress(per);
     };
   }
 
   return (
+    // <button
+    //   className={`${
+    //     enabled && !loading ? "" : "btn-disabled"
+    //   } radial-progress bg-black text-white border-black border ${
+    //     !loading && !done ? "cursor-default" : ""
+    //   }`}
+    //   style={{
+    //     "--value": progress,
+    //     "--thickness": progress == 0 ? 0 : "calc(var(--size) / 10)",
+    //     "--size": "8rem",
+    //   }}
+    //   role="progressbar"
+    //   onClick={programThisDevice}
+    // >
+    //   {loading
+    //     ? "Updating"
+    //     : enabled || progress == 0
+    //     ? "Update"
+    //     : progress == 100
+    //     ? "Done"
+    //     : progress.toFixed(0) + "%"}
+    // </button>
     <button
-      className={`${
+      className={`btn ${
         enabled && !loading ? "" : "btn-disabled"
-      } radial-progress bg-black text-white border-black border ${
+      }  w-full bg-black text-white border-black border relative ${
         !loading && !done ? "cursor-default" : ""
       }`}
-      style={{
-        "--value": progress,
-        "--thickness": progress == 0 ? 0 : "calc(var(--size) / 10)",
-        "--size": "8rem",
-      }}
-      role="progressbar"
       onClick={programThisDevice}
     >
+      {!loading && !done && (
+        <progress
+          className="progress w-full absolute inset-0 h-full bg-black"
+          style={{
+            "mix-blend-mode": "difference",
+            backgroundColor: "rgba(1,1,1,1)",
+          }}
+          // style={{ position: "absolute", width: "100% !important" }}
+          value={progress}
+          max="100"
+        ></progress>
+      )}
       {loading
         ? "Updating"
         : enabled || progress == 0
-        ? "Update"
+        ? `Update to ${firmwareName}`
         : progress == 100
-        ? "Done"
+        ? `Finished Updating to ${firmwareName}`
         : progress.toFixed(0) + "%"}
     </button>
   );

@@ -31,16 +31,19 @@ export default function ReleaseSelector() {
   useEffect(() => {
     if (!selected) {
       useStore.setState({ firmwareBinFile: null });
+      useStore.setState({ firmwareName: null });
       return;
     }
 
     const fileName = releases[selectedRelease].file;
+    const firmwareName = releases[selectedRelease].title;
     const fileUrl = getAssetPath(`firmware/${fileName}.bin`); // Update with the correct path
 
     fetch(fileUrl)
       .then((response) => response.arrayBuffer())
       .then((data) => {
         useStore.setState({ firmwareBinFile: new Uint8Array(data) }); // Store as a byte array
+        useStore.setState({ firmwareName: firmwareName });
       })
       .catch((error) => {
         console.error("Error loading file:", error);
@@ -53,16 +56,14 @@ export default function ReleaseSelector() {
     <div className="card bg-white text-primary-content w-full">
       <div className="card-body space-y-2">
         <h2 className="card-title">Firmware Version</h2>
-        {/* {firmwareBinFile ? (
-          <p>
-            Firmware binary loaded successfully for {rel.title}. Size:{" "}
-            {firmwareBinFile.length} bytes
-          </p>
-        ) : (
-          <p>Select a file to load.</p>
-        )} */}
         <div className="space-y-2">
           {releases.map((firmVer, idx) => {
+            const date = new Date(firmVer.date);
+            const formattedDate = date.toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            });
             return (
               <div
                 className="collapse collapse-plus bg-white outline"
@@ -73,9 +74,12 @@ export default function ReleaseSelector() {
                   name="my-accordion-3"
                   defaultChecked={idx == 0}
                 />
-                <div className="collapse-title font-bold">{firmVer.title}</div>
+                <div className="collapse-title">
+                  <span className="font-bold">{firmVer.title}</span>
+                  {` (${formattedDate})`}
+                </div>
                 <div className="collapse-content space-y-4">
-                  <div>
+                  <div className="space-y-2">
                     <div> Release Notes:</div>
 
                     <ul className="list-disc pl-5 space-y-2">

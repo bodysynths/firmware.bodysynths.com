@@ -19,7 +19,6 @@ export default function ReleaseSelector() {
   };
 
   useEffect(() => {
-    // Fetch the releases.json file from the public directory
     fetch(getAssetPath("releases.json"))
       .then((response) => response.json())
       .then((data) => {
@@ -38,13 +37,6 @@ export default function ReleaseSelector() {
         console.error("Error fetching releases:", error);
       });
   }, []);
-
-  useEffect(() => {
-    // Set the most recent release when the releases state changes
-    // if (releases.length > 0 && !selected) {
-    //   setSelectedRelease(0);
-    // }
-  }, [releases]);
 
   return (
     <div className="card bg-white text-primary-content w-full">
