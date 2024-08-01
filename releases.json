@@ -1,13 +1,6 @@
 {
   "data": [
     {
-      "title": "Metal Fetishist v1.1",
-      "release_notes": ["Note 1", "Note 2"],
-      "file": "MetalFetishist-v1.1",
-      "date": "2024-08-07",
-      "instrument": "Metal Fetishist"
-    },
-    {
       "title": "Metal Fetishist v1.0",
       "release_notes": ["Initial release"],
       "file": "MetalFetishist-v1.0",
