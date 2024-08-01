@@ -1,39 +1,18 @@
 {
   "data": [
     {
-      "title": "MF Blink v1",
+      "title": "Metal Fetishist v1.1",
       "release_notes": ["Note 1", "Note 2"],
-      "file": "blink-v1",
-      "date": "2024-07-29",
+      "file": "MetalFetishist-v1.1",
+      "date": "2024-08-07",
       "instrument": "Metal Fetishist"
     },
     {
-      "title": "MF Blink v2",
-      "release_notes": ["Note 1.2", "Note 2.2"],
-      "file": "blink-v2",
-      "date": "2024-07-31",
+      "title": "Metal Fetishist v1.0",
+      "release_notes": ["Initial release"],
+      "file": "MetalFetishist-v1.0",
+      "date": "2024-06-11",
       "instrument": "Metal Fetishist"
-    },
-    {
-      "title": "MF Blink v3",
-      "release_notes": ["Nggote 1.2", "Noggte 2.2"],
-      "file": "blink-v2",
-      "date": "2024-08-31",
-      "instrument": "Metal Fetishist"
-    },
-    {
-      "title": "OTHER Blink v1",
-      "release_notes": ["Nnnnote 1", "Nnnnote 2"],
-      "file": "blink-v1",
-      "date": "2024-07-29",
-      "instrument": "Other"
-    },
-    {
-      "title": "OTHER Blink v2",
-      "release_notes": ["Nnnnote 1.2", "Nnnnote 2.2"],
-      "file": "blink-v2",
-      "date": "2024-07-31",
-      "instrument": "Other"
     }
   ]
 }
