@@ -95,7 +95,7 @@ export const connectDevice = async (
     device = null;
   }
   navigator.usb
-    .requestDevice({ filters: [{ vendorId: 0x483 }] })
+    .requestDevice({ filters: [{ vendorId: 0x483, productId: 57105 }] })
     .then(async (selectedDevice) => {
       let interfaces = dfu.findDeviceDfuInterfaces(selectedDevice);
       if (interfaces.length == 0) {

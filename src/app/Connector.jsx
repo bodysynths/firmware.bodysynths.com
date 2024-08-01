@@ -32,11 +32,16 @@ export default function Connector() {
     useStore.setState({ manifestationTolerant: m });
   };
 
+  const setError = (d) => {
+    useStore.setState({ errorMsg: d });
+  };
+
   const connectThisDevice = async () => {
     let newDevice = await connectDevice(
       device,
       setDevice,
-      setManifestationTolerant
+      setManifestationTolerant,
+      setError
     );
   };
 

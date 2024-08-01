@@ -31,10 +31,12 @@ export default function Programmer() {
 
   const enabled = firmwareBinFile && device && done;
 
+  // console.log(device);
+
   const setDevice = (d) => {
     useStore.setState({
       device: d,
-      errorMsg: "",
+      // errorMsg: "",
     });
   };
 
