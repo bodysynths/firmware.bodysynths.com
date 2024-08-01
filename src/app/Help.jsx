@@ -46,7 +46,7 @@ export default function Help() {
           <summary className="collapse-title font-medium">Contact</summary>
           <div className="collapse-content">
             <p>
-              If you have further questions please contact us <ContactLink /> .
+              If you have further questions please contact us <ContactLink />.
             </p>
           </div>
         </details>
