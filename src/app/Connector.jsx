@@ -16,6 +16,7 @@ export default function Connector() {
   //   const [device, setDevice] = useState(null);
   const [status, setStatus] = useState("");
   const [instructions, setInstructions] = useState("");
+  const [filters, setFilters] = useState([]);
 
   const firmwareBinFile = useStore((state) => state.firmwareBinFile);
   const device = useStore((state) => state.device);
@@ -36,12 +37,25 @@ export default function Connector() {
     useStore.setState({ errorMsg: d });
   };
 
+  useEffect(() => {
+    // Fetch the releases.json file from the public directory
+    fetch(getAssetPath("USBvendorID.json"))
+      .then((response) => response.json())
+      .then((data) => {
+        setFilters(data.filters);
+      })
+      .catch((error) => {
+        console.error("Error fetching instructions:", error);
+      });
+  }, []);
+
   const connectThisDevice = async () => {
     let newDevice = await connectDevice(
       device,
       setDevice,
       setManifestationTolerant,
-      setError
+      setError,
+      filters
     );
   };
 

@@ -3,10 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { marked } from "marked";
 
-import dfuse, { Device } from "./dfu/dfuse";
-import dfu from "./dfu/dfu.js";
-import { connectDevice } from "./dfu/dfu-util-new";
-
 import { getAssetPath } from "./utils";
 import { useStore } from "./store";
 
