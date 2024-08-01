@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 // const isProd = process.env.NODE_ENV === "production";
-// const basePath = isProd ? "/" : "";
+// const basePath = isProd ? "" : "";
 
 // console.log("NEXT_PUBLIC_BASE_PATH: ", process.env.NEXT_PUBLIC_BASE_PATH);
 
