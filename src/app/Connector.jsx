@@ -41,11 +41,9 @@ export default function Connector() {
   };
 
   useEffect(() => {
-    // Fetch the releases.json file from the public directory
     fetch(getAssetPath("instructions.md"))
       .then((response) => response.text())
       .then((data) => {
-        // console.log(data);
         setInstructions(data);
       })
       .catch((error) => {
@@ -60,7 +58,6 @@ export default function Connector() {
         <article className="prose text-primary-content max-w-none">
           <div dangerouslySetInnerHTML={{ __html: marked(instructions) }}></div>
         </article>
-        {/* <p>{device ? `Connected to device` : "No Device Connected"}</p> */}
         <div className="card-actions">
           <button
             className={`${device && "btn-disabled"} btn w-full`}
@@ -70,10 +67,8 @@ export default function Connector() {
           </button>
         </div>
         <div className="card-actions justify-center flex items-center">
-          {/* <div className="justify-end"> */}
           <Programmer />
         </div>
-        {/* </div> */}
       </div>
     </div>
   );

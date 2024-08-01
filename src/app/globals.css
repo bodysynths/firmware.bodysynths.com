@@ -4,23 +4,17 @@
 
 :root {
   --rounded-box: 0rem;
-  /* --btn-color: black; */
   --fallback-bc: white;
   --rounded-btn: 0rem;
 }
 
 :root .prose {
   --tw-prose-counters: black;
+  --tw-prose-links: black;
 }
 
 body {
   background-color: black;
-  /* color: white; */
-}
-
-.main {
-  /* width: 100vw;
-  height: 100vh; */
 }
 
 .btn-disabled {

@@ -300,10 +300,16 @@ dfuse.Device.prototype.do_download = async function (
   }
 
   try {
-    // console.log("Manifesting poll_until", this.device);
+    console.log(
+      "Manifesting poll_until",
+      dfuse.SET_ADDRESS,
+      startAddress,
+      manifestationTolerant
+    );
     // console.trace();
     await this.poll_until((state) => state == dfu.dfuMANIFEST);
   } catch (error) {
+    console.log(manifestationTolerant, "THIS ERROR");
     this.logError(error);
   }
 };

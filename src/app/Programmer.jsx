@@ -31,15 +31,15 @@ export default function Programmer() {
 
   const enabled = firmwareBinFile && device && done;
 
-  console.log(device != null, firmwareBinFile != null, done);
-
   const setDevice = (d) => {
-    useStore.setState({ device: d });
+    useStore.setState({
+      device: d,
+      errorMsg: "",
+    });
   };
 
   const onFinish = () => {
     setDone(true);
-    // setProgress(0);
   };
 
   useEffect(() => {
@@ -71,31 +71,17 @@ export default function Programmer() {
       const per = (100 * prog) / total;
       setProgress(per);
     };
+
+    // device.logError = (msg) => {
+    //   useStore.setState({
+    //     device: null,
+    //     errorModal: true,
+    //     errorMsg: msg,
+    //   });
+    // };
   }
 
   return (
-    // <button
-    //   className={`${
-    //     enabled && !loading ? "" : "btn-disabled"
-    //   } radial-progress bg-black text-white border-black border ${
-    //     !loading && !done ? "cursor-default" : ""
-    //   }`}
-    //   style={{
-    //     "--value": progress,
-    //     "--thickness": progress == 0 ? 0 : "calc(var(--size) / 10)",
-    //     "--size": "8rem",
-    //   }}
-    //   role="progressbar"
-    //   onClick={programThisDevice}
-    // >
-    //   {loading
-    //     ? "Updating"
-    //     : enabled || progress == 0
-    //     ? "Update"
-    //     : progress == 100
-    //     ? "Done"
-    //     : progress.toFixed(0) + "%"}
-    // </button>
     <button
       className={`btn ${
         enabled && !loading ? "" : "btn-disabled"
@@ -108,21 +94,24 @@ export default function Programmer() {
         <progress
           className="progress w-full absolute inset-0 h-full bg-black"
           style={{
-            "mix-blend-mode": "difference",
+            mixBlendMode: "difference",
             backgroundColor: "rgba(1,1,1,1)",
           }}
-          // style={{ position: "absolute", width: "100% !important" }}
           value={progress}
           max="100"
         ></progress>
       )}
-      {loading
-        ? "Updating"
-        : enabled || progress == 0
-        ? `Update to ${firmwareName}`
-        : progress == 100
-        ? `Finished Updating to ${firmwareName}`
-        : progress.toFixed(0) + "%"}
+      {loading ? (
+        <>
+          Updating <span className="loading loading-dots loading-xs"></span>
+        </>
+      ) : enabled || progress == 0 ? (
+        `Update to ${firmwareName}`
+      ) : progress == 100 ? (
+        `Finished Updating to ${firmwareName}`
+      ) : (
+        progress.toFixed(0) + "%"
+      )}
     </button>
   );
 }

@@ -87,13 +87,12 @@ export const connectDevice = async (
   setDevice,
   setManifestationTolerant
 ) => {
-  let filters = [];
   if (device) {
     device.close().then(onDisconnect);
     device = null;
   }
   navigator.usb
-    .requestDevice({ filters: filters })
+    .requestDevice({ filters: [{ vendorId: 0x483 }] })
     .then(async (selectedDevice) => {
       let interfaces = dfu.findDeviceDfuInterfaces(selectedDevice);
       if (interfaces.length == 0) {

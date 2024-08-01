@@ -7,4 +7,7 @@ export const useStore = create((set) => ({
   firmwareBinFile: null,
   manifestationTolerant: false,
   firmwareName: "",
+  errorModal: false,
+  errorMsg: "",
+  setErrorModal: (value) => set({ errorModal: value }),
 }));

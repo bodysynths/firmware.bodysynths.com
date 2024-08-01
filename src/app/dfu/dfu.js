@@ -421,7 +421,14 @@ dfu.Device.prototype.requestOut = function (bRequest, data, wValue = 0) {
 };
 
 dfu.Device.prototype.requestIn = function (bRequest, wLength, wValue = 0) {
-  // console.log("requestIn: ", bRequest, wLength, wValue);
+  console.log(
+    "requestIn: ",
+    this.intfNumber,
+    bRequest,
+    wLength,
+    wValue,
+    this.device_
+  );
   return this.device_
     .controlTransferIn(
       {
@@ -573,9 +580,9 @@ dfu.Device.prototype.do_upload = async function (
 };
 
 dfu.Device.prototype.poll_until = async function (state_predicate) {
-  // console.log("DEVICE poll_until getStatus");
+  console.log("DEVICE poll_until getStatus", this, state_predicate);
   let dfu_status = await this.getStatus();
-  // console.log("dfu_status: ", dfu_status);
+  console.log("dfu_status: ", dfu_status);
 
   let device = this;
   function async_sleep(duration_ms) {
@@ -584,14 +591,14 @@ dfu.Device.prototype.poll_until = async function (state_predicate) {
       setTimeout(resolve, duration_ms);
     });
   }
-  // console.log("DEVICE poll_until");
+  console.log("DEVICE poll_until");
   while (
     !state_predicate(dfu_status.state) &&
     dfu_status.state != dfu.dfuERROR
   ) {
     await async_sleep(dfu_status.pollTimeout);
     dfu_status = await this.getStatus();
-    // console.log("dfu_status: ", dfu_status);
+    console.log("dfu_status: ", dfu_status);
   }
 
   return dfu_status;
