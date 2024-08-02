@@ -1,19 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import dfuse, { Device } from "./dfu/dfuse";
 
-import dfu from "./dfu/dfu.js";
-import {
-  connectDevice,
-  connect,
-  loadBinaryFile,
-  programDevice,
-} from "./dfu/dfu-util-new";
-
-import ReleaseSelector from "./ReleaseSelector";
-
-import { getAssetPath } from "./utils";
+import { programDevice } from "./dfu/dfu-util-new";
 
 import { useStore } from "./store";
 
@@ -22,21 +11,19 @@ export default function Programmer() {
   const [done, setDone] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const firmwareBinFile = useStore((state) => state.firmwareBinFile);
-  const device = useStore((state) => state.device);
-  const manifestationTolerant = useStore(
-    (state) => state.manifestationTolerant
-  );
-  const firmwareName = useStore((state) => state.firmwareName);
+  const {
+    firmwareBinFile,
+    device,
+    manifestationTolerant,
+    setErrorMsg,
+    firmwareName,
+  } = useStore();
 
   const enabled = firmwareBinFile && device && done;
-
-  // console.log(device);
 
   const setDevice = (d) => {
     useStore.setState({
       device: d,
-      // errorMsg: "",
     });
   };
 
@@ -79,10 +66,10 @@ export default function Programmer() {
       setDone(true);
       setProgress(0);
 
+      setErrorMsg(msg);
+
       useStore.setState({
         device: null,
-        errorModal: true,
-        errorMsg: msg,
       });
     };
   }

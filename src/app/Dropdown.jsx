@@ -4,10 +4,6 @@ import { useState } from "react";
 export default function Dropdown({ options, onSelect, curOption, title }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
   const handleSelect = (option) => {
     onSelect(option);
     setIsOpen(false); // Close dropdown after selection

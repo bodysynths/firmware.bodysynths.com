@@ -9,7 +9,7 @@ export default function Header() {
         <img
           className="w-full"
           src={getAssetPath("header.png")}
-          alt="Example Image"
+          alt="Body Synths Logo"
         />
       </a>
       <div>Firmware Update Utility</div>

@@ -8,11 +8,8 @@ import { useStore } from "./store";
 import Dropdown from "./Dropdown";
 
 export default function ReleaseSelector() {
-  //   const [releases, setReleases] = useState([]);
   const [instruments, setInstruments] = useState("");
-
-  const releases = useStore((state) => state.releases);
-  const instrument = useStore((state) => state.instrument);
+  const { instrument, setErrorMsg } = useStore();
 
   const setInstrument = (i) => {
     useStore.setState({ instrument: i });
@@ -34,7 +31,7 @@ export default function ReleaseSelector() {
         setInstruments([...new Set(instruments)]);
       })
       .catch((error) => {
-        console.error("Error fetching releases:", error);
+        setErrorMsg(`Error fetching releases: ${error}`);
       });
   }, []);
 

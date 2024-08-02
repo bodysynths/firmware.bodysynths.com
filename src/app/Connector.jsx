@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { marked } from "marked";
 
-import dfuse, { Device } from "./dfu/dfuse";
-import dfu from "./dfu/dfu.js";
 import { connectDevice } from "./dfu/dfu-util-new";
 
 import { getAssetPath } from "./utils";
@@ -13,17 +11,10 @@ import { useStore } from "./store";
 import Programmer from "./Programmer";
 
 export default function Connector() {
-  //   const [device, setDevice] = useState(null);
-  const [status, setStatus] = useState("");
   const [instructions, setInstructions] = useState("");
   const [filters, setFilters] = useState([]);
 
-  const firmwareBinFile = useStore((state) => state.firmwareBinFile);
-  const device = useStore((state) => state.device);
-  const manifestationTolerant = useStore(
-    (state) => state.manifestationTolerant
-  );
-  const instrument = useStore((state) => state.instrument);
+  const { device, instrument, setErrorMsg } = useStore();
 
   const setDevice = (d) => {
     useStore.setState({ device: d });
@@ -33,40 +24,33 @@ export default function Connector() {
     useStore.setState({ manifestationTolerant: m });
   };
 
-  const setError = (d) => {
-    useStore.setState({ errorMsg: d });
+  const connectThisDevice = async () => {
+    let newDevice = await connectDevice(
+      device,
+      setDevice,
+      setManifestationTolerant,
+      setErrorMsg,
+      filters
+    );
   };
 
   useEffect(() => {
-    // Fetch the releases.json file from the public directory
     fetch(getAssetPath("USBvendorID.json"))
       .then((response) => response.json())
       .then((data) => {
         setFilters(data.filters);
       })
       .catch((error) => {
-        console.error("Error fetching instructions:", error);
+        setErrorMsg(`Error fetching vendor info: ${error}`);
       });
-  }, []);
 
-  const connectThisDevice = async () => {
-    let newDevice = await connectDevice(
-      device,
-      setDevice,
-      setManifestationTolerant,
-      setError,
-      filters
-    );
-  };
-
-  useEffect(() => {
     fetch(getAssetPath("instructions.md"))
       .then((response) => response.text())
       .then((data) => {
         setInstructions(data);
       })
       .catch((error) => {
-        console.error("Error fetching instructions:", error);
+        setErrorMsg(`Error fetching instructions: ${error}`);
       });
   }, []);
 
@@ -74,7 +58,7 @@ export default function Connector() {
     <div className="card bg-white text-primary-content w-full">
       <div className="card-body space-y-2">
         <h2 className="card-title">Connect Device</h2>
-        <article className="prose text-primary-content max-w-none">
+        <article className="prose text-primary-content max-w-none w-full">
           <div dangerouslySetInnerHTML={{ __html: marked(instructions) }}></div>
         </article>
         <div className="card-actions">

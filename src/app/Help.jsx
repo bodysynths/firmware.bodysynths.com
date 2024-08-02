@@ -11,20 +11,17 @@ import ContactLink from "./ContactLink";
 export default function Help() {
   const [instructions, setInstructions] = useState("");
 
-  const instrument = useStore((state) => state.instrument);
-
-  const { errorModal, setErrorModal } = useStore();
+  const { setErrorMsg } = useStore();
 
   useEffect(() => {
     // Fetch the releases.json file from the public directory
     fetch(getAssetPath("windows.md"))
       .then((response) => response.text())
       .then((data) => {
-        // console.log(data);
         setInstructions(data);
       })
       .catch((error) => {
-        console.error("Error fetching instructions:", error);
+        setErrorMsg(`Error fetching Windows Help: ${error}`);
       });
   }, []);
 
@@ -35,7 +32,7 @@ export default function Help() {
         <details className="collapse collapse-arrow outline">
           <summary className="collapse-title font-medium">Windows</summary>
           <div className="collapse-content">
-            <article className="prose text-primary-content ">
+            <article className="prose text-primary-content max-w-none">
               <div
                 dangerouslySetInnerHTML={{ __html: marked(instructions) }}
               ></div>

@@ -142,11 +142,8 @@ export const programDevice = async (
   manifestationTolerant,
   setDone
 ) => {
-  // console.log("PROGRAM");
   const transferSize = 1024;
   if (device && firmwareFile != null) {
-    // setLogContext(downloadLog);
-    // clearLog(downloadLog);
     try {
       let status = await device.getStatus();
       if (status.state == dfu.dfuERROR) {
@@ -159,9 +156,6 @@ export const programDevice = async (
       .do_download(transferSize, firmwareFile, manifestationTolerant)
       .then(
         () => {
-          // console.log("PROGRAM DONE");
-          // logInfo("Done!");
-          // setLogContext(null);
           if (!manifestationTolerant) {
             device.waitDisconnected(5000).then(
               (dev) => {
@@ -177,7 +171,6 @@ export const programDevice = async (
           }
         },
         (error) => {
-          // console.log("PROGRAM ERROR");
           device.logError(error);
         }
       );

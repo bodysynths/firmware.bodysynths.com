@@ -10,4 +10,5 @@ export const useStore = create((set) => ({
   errorModal: false,
   errorMsg: "",
   setErrorModal: (value) => set({ errorModal: value }),
+  setErrorMsg: (msg) => set({ errorModal: true, errorMsg: msg }),
 }));
