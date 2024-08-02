@@ -1,8 +1,22 @@
 {
   "data": [
     {
+      "title": "Metal Fetishist v1.1",
+      "release_notes": [
+        "Fixed MIDI clock sync to default to a faster speed. Many of you asked for this!",
+        "Fixed an issue where the sequencer was not properly resetting the step cycle time when switching to Play mode.",
+        "Fixed an issue where the trigger button would stop working if the instrument was running for longer than a day.",
+        "Fixed cut-off control curve to remove dead space at lowest values.",
+        "Lowered cut-off envelope amount range to make the control curve more useful.",
+        "Added an optional clock multiplier (x2, x4, x8) to external clock inputs (CV and MIDI). This is the biggest change and we honestly believe you will love playing with it at the faster settings."
+    ],
+      "file": "MetalFetishist-v1.1",
+      "date": "2024-08-02",
+      "instrument": "Metal Fetishist"
+    },
+    {
       "title": "Metal Fetishist v1.0",
-      "release_notes": ["Initial release"],
+      "release_notes": ["Initial release."],
       "file": "MetalFetishist-v1.0",
       "date": "2024-06-11",
       "instrument": "Metal Fetishist"
