@@ -2,7 +2,7 @@
 
 This is a WebUSB Programmer tool for Body Synths instruments partly based on the source code from [Electrosmith's Programmer](https://github.com/electro-smith/Programmer).
 
-The tool is hosted at [firmware.bodysynths.com](firmware.bodysynths.com).
+The tool is hosted at [firmware.bodysynths.com](https://firmware.bodysynths.com).
 
 # Development and deploy
 
