@@ -1,3 +1,11 @@
+# About
+
+This is a WebUSB Programmer tool for Body Synths instruments partly based on the source code from [Electrosmith's Programmer](https://github.com/electro-smith/Programmer).
+
+The tool is hosted at [firmware.bodysynths.com](firmware.bodysynths.com).
+
+# Development and deploy
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
