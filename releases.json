@@ -1,6 +1,16 @@
 {
   "data": [
     {
+      "title": "Metal Fetishist v1.2",
+      "release_notes": [
+        "Fixed an issue where incoming MIDI signals were sometimes ignored, requiring a restart.",
+        "BETA | For testing purposes only. Please use v1.1 otherwise."
+    ],
+      "file": "MetalFetishist-v1.2",
+      "date": "2025-03-19",
+      "instrument": "Metal Fetishist"
+    },
+    {
       "title": "Metal Fetishist v1.1",
       "release_notes": [
         "Fixed MIDI clock sync so it defaults to a faster speed. Many of you asked for this!",
