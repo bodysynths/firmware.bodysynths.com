@@ -3,8 +3,7 @@
     {
       "title": "Metal Fetishist v1.2",
       "release_notes": [
-        "Fixed an issue where incoming MIDI signals were sometimes ignored, requiring a restart.",
-        "BETA | For testing purposes only. Please use v1.1 otherwise."
+        "Fixed an issue where MIDI input parser would crash with certain hardware and required a restart."
     ],
       "file": "MetalFetishist-v1.2",
       "date": "2025-03-19",

@@ -1,5 +1,5 @@
-1. On Windows you may need to update the USB drivers for the board first.
-2. Download the latest version of [Zadig](https://zadig.akeo.ie/) and install it using the ".exe" file.
-3. The driver should say "WinUSB". Click the large "Install Driver" button.
-4. Return to "Connect Device" instructions above.
-5. If you run into further problems please contact us [here](https://bodysynths.com/pages/contact).
+1. Download and Install the latest version of <a href="https://zadig.akeo.ie" target="_blank">Zadig</a>.
+2. Launch Zadig.
+3. Follow steps 2, 3 and 4 from the "Connect Device" section on this page, then click the "Options" menu in Zadig and select "List All Devices".
+4. In the dropdown menu inside the main window, select "DFU in FS mode," followed by selecting "WinUSB" in the target driver box.
+5. Click "Replace Driver". Zadig will update to the appropriate driver to flash your instrument.
