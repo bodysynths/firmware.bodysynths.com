@@ -14,7 +14,7 @@ export default function Connector() {
   const [instructions, setInstructions] = useState("");
   const [filters, setFilters] = useState([]);
 
-  const { device, instrument, setErrorMsg } = useStore();
+  const { device, instrument, isWebUSBSupported, setErrorMsg } = useStore();
 
   const setDevice = (d) => {
     useStore.setState({ device: d });
@@ -57,21 +57,31 @@ export default function Connector() {
   return (
     <div className="card bg-white text-primary-content w-full">
       <div className="card-body space-y-2">
-        <h2 className="card-title">Connect Device</h2>
-        <article className="prose text-primary-content max-w-none w-full">
-          <div dangerouslySetInnerHTML={{ __html: marked(instructions) }}></div>
-        </article>
-        <div className="card-actions">
-          <button
-            className={`${device && "btn-disabled"} btn w-full`}
-            onClick={connectThisDevice}
-          >
-            {device ? `${instrument} Connected` : `Connect to ${instrument}`}
-          </button>
-        </div>
-        <div className="card-actions justify-center flex items-center">
-          <Programmer />
-        </div>
+          { isWebUSBSupported ? (
+            <>
+              <h2 className="card-title">Connect Device</h2>
+              <article className="prose text-primary-content max-w-none w-full">
+                <div dangerouslySetInnerHTML={{ __html: marked(instructions) }}></div>
+              </article>
+              <div className="card-actions">
+                <button
+                  className={`${device && "btn-disabled"} btn w-full`}
+                  onClick={connectThisDevice}
+                >
+                  {device ? `${instrument} Connected` : `Connect to ${instrument}`}
+                </button>
+              </div>
+              <div className="card-actions justify-center flex items-center">
+                <Programmer />
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className="card-title">Browser not supported</h2>
+              <span>Your browser is not supported. Please use Chrome or a Chrome-based browser</span>
+            </>
+          )
+        }
       </div>
     </div>
   );
