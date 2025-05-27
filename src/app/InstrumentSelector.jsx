@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 
 import { getAssetPath } from "./utils";
 import { useStore } from "./store";
@@ -8,32 +8,29 @@ import { useStore } from "./store";
 import Dropdown from "./Dropdown";
 
 export default function ReleaseSelector() {
-  const [instruments, setInstruments] = useState("");
-  const { instrument, setErrorMsg } = useStore();
+  const { instruments, selectedInstrument, setErrorMsg } = useStore();
 
-  const setInstrument = (i) => {
-    useStore.setState({ instrument: i });
-  };
+  const setSelectedInstrument = useCallback((selectedInstrument) => {
+    useStore.setState({ selectedInstrument });
+  }, []);
 
   useEffect(() => {
     fetch(getAssetPath("releases.json"))
       .then((response) => response.json())
       .then((data) => {
-        const sortedReleases = data.data.sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
-        );
-        useStore.setState({ releases: sortedReleases });
-
-        const instruments = sortedReleases.map((item) => item.instrument);
-        if (instruments.length > 0) {
-          useStore.setState({ instrument: instruments[0] });
-        }
-        setInstruments([...new Set(instruments)]);
+        const { instruments } = data;
+        useStore.setState({ instruments, selectedInstrument: instruments[0].name });
       })
       .catch((error) => {
         setErrorMsg(`Error fetching releases: ${error}`);
       });
-  }, []);
+  }, [setErrorMsg]);
+
+  if (!instruments) {
+    return null;
+  }
+
+  const dropdownInstruments = instruments.map(({ name }) => name);
 
   return (
     <div className="card bg-white text-primary-content w-full">
@@ -41,15 +38,15 @@ export default function ReleaseSelector() {
         <h2 className="card-title">Instrument</h2>
         <div className="card-actions ">
           <Dropdown
-            options={instruments}
-            onSelect={setInstrument}
-            curOption={instrument}
+            options={dropdownInstruments}
+            onSelect={setSelectedInstrument}
+            curOption={selectedInstrument}
             title={"Select Instrument"}
           />
         </div>
         <div>
           {"Selected Instrument: "}
-          <span className="font-bold">{instrument ? instrument : "None"}</span>
+          <span className="font-bold">{selectedInstrument ? selectedInstrument : "None"}</span>
         </div>
       </div>
     </div>
