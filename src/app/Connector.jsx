@@ -14,7 +14,7 @@ export default function Connector() {
   const [instructions, setInstructions] = useState("");
   const [filters, setFilters] = useState([]);
 
-  const { device, instrument, isWebUSBSupported, setErrorMsg } = useStore();
+  const { device, selectedInstrument, isWebUSBSupported, setErrorMsg } = useStore();
 
   const setDevice = (d) => {
     useStore.setState({ device: d });
@@ -52,7 +52,7 @@ export default function Connector() {
       .catch((error) => {
         setErrorMsg(`Error fetching instructions: ${error}`);
       });
-  }, []);
+  }, [setErrorMsg]);
 
   return (
     <div className="card bg-white text-primary-content w-full">
@@ -68,7 +68,7 @@ export default function Connector() {
                   className={`${device && "btn-disabled"} btn w-full`}
                   onClick={connectThisDevice}
                 >
-                  {device ? `${instrument} Connected` : `Connect to ${instrument}`}
+                  {device ? `${selectedInstrument} Connected` : `Connect to ${selectedInstrument}`}
                 </button>
               </div>
               <div className="card-actions justify-center flex items-center">
