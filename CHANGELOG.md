@@ -1,3 +1,7 @@
+# 2025-05-28
+
+* Fix: add back "Connect to {instrument}" for WebUSB connect button
+
 # 2025-05-27
 
 * Restructured the releases.json. Now the instruments are a top level structure with nested releases inside
