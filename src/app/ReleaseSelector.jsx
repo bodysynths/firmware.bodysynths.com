@@ -8,6 +8,7 @@ import { useStore } from "./store";
 export function Release({
   idx,
   firmVer,
+  isLatest,
   selectedRelease,
   setSelectedRelease,
   openAccordionIndex,
@@ -30,13 +31,18 @@ export function Release({
         id={`accordion-item-${idx}`}
       />
       <div className="collapse-title">
-        {firmVer.pre && (
-          <span className="inline-flex items-center px-2 py-1 text-xs font-medium text-white bg-red-500 rounded-full mr-2">
-            Pre-Release
-          </span>
-        )}
         <span className="font-bold">{firmVer.title}</span>
         {` (${formattedDate})`}
+        {firmVer.pre && (
+          <span className="inline-flex align-middle items-center py-1 px-2 text-xs font-medium text-white bg-red-500 rounded-full ml-2">
+            Pre-release
+          </span>
+        )}
+        {isLatest && (
+          <span className="inline-flex align-middle items-center py-1 px-2 text-xs font-medium text-white bg-green-500 rounded-full ml-2">
+            Latest
+          </span>
+        )}
       </div>
       <div className="collapse-content space-y-4">
         <div className="space-y-2">
@@ -143,11 +149,13 @@ export default function ReleaseSelector() {
         <h2 className="card-title">Firmware Version</h2>
         <div className="space-y-2">
           {releases.map((firmVer, idx) => {
+            const isLatest = latestNonPreReleaseIndex !== -1 && idx === latestNonPreReleaseIndex;
             return (
               <Release
                 key={idx}
                 idx={idx}
                 firmVer={firmVer}
+                isLatest={isLatest}
                 selectedRelease={selectedRelease}
                 setSelectedRelease={setSelectedRelease}
                 openAccordionIndex={openAccordionIndex}
