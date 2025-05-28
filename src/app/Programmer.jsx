@@ -35,7 +35,7 @@ export default function Programmer() {
     if (enabled && progress == 100) {
       setProgress(0);
     }
-  }, [device]);
+  }, [enabled, progress]);
 
   const programThisDevice = async () => {
     if (!enabled) {
