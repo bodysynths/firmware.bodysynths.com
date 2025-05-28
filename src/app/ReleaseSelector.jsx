@@ -75,42 +75,38 @@ const getReleases = (instruments, selectedInstrument) => {
 
 export default function ReleaseSelector() {
   const [selectedRelease, setSelectedRelease] = useState(null);
-  const [openAccordionIndex, setOpenAccordionIndex] = useState(null); // For controlling which accordion is open
+  const [openAccordionIndex, setOpenAccordionIndex] = useState(null);
 
   const { instruments, selectedInstrument, setErrorMsg } = useStore();
 
   const releases = useMemo(() => getReleases(instruments, selectedInstrument), [instruments, selectedInstrument]);
 
+  const latestNonPreReleaseIndex = releases && releases.findIndex(
+    (release) => !release.pre
+  );
+
   // Set the initial selected release and open accordion
   useEffect(() => {
     if (releases && releases.length > 0) {
-      const nonPreReleaseIndex = releases.findIndex(release => !release.pre);
-      const initialIndex = nonPreReleaseIndex !== -1 ? nonPreReleaseIndex : 0;
+      const initialIndex = latestNonPreReleaseIndex !== -1 ? latestNonPreReleaseIndex : 0;
       setSelectedRelease(initialIndex);
       setOpenAccordionIndex(initialIndex);
     } else {
       setSelectedRelease(null);
       setOpenAccordionIndex(null);
     }
-  }, [releases]);
+  }, [latestNonPreReleaseIndex, releases, selectedInstrument]);
 
   const selected = typeof selectedRelease === "number";
 
   useEffect(() => {
-    if (!selected || selectedRelease === null) {
+    if (!selected || selectedRelease === null || selectedRelease < 0) {
       useStore.setState({ firmwareBinFile: null });
       useStore.setState({ firmwareName: null });
       return;
     }
-
-    if (!releases) {
-      return;
-    }
     
-    if (selectedRelease < 0 || selectedRelease >= releases.length) {
-        setErrorMsg("Invalid release selection during fetch effect.");
-        useStore.setState({ firmwareBinFile: null });
-        useStore.setState({ firmwareName: null });
+    if (!releases || selectedRelease >= releases.length) {
         return;
     }
 
