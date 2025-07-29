@@ -9,7 +9,7 @@
             "Added ability to play the instrument via MIDI.",
 	    "Added an optional 2nd oscillator.",
 	    "Added alternative effects: Phaser, Flanger, Chorus.",
-	    "Added alternative modulation destinations: Volume Decay Time, Pitch Decay Amount, CutOff Decay Amount, Volume, Effect Param.",
+	    "Added alternative step-modulation destinations: Volume Decay Time, Pitch Decay Amount, CutOff Decay Amount, Volume, Effect Param.",
 	    "Added alternative step sequencer lengths: 3, 5, 7, 12, 18 and 24.",
 	    "Added the ability to disable sequencer auto-start when using external clock sources.",
 	    "Added a sequencer option that enforces starting always from the first step.",
