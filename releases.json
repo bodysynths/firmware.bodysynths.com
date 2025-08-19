@@ -4,7 +4,7 @@
       "name": "Metal Fetishist",
       "releases": [
         {
-          "title": "Metal Fetishist v2.0-rc.1",
+          "title": "Metal Fetishist v2.0-rc.2",
           "release_notes": [
             "Added ability to play the instrument via MIDI.",
 	    "Added an optional 2nd oscillator.",
@@ -13,10 +13,11 @@
 	    "Added alternative step sequencer lengths: 3, 5, 7, 12, 18 and 24.",
 	    "Added the ability to disable sequencer auto-start when using external clock sources.",
 	    "Added a sequencer option that enforces starting always from the first step.",
-	    "NOTE: Please check the V2 Pre-release Documentation available for download at the Support & Resources page."
+	    "NOTE: Please check the V2 Pre-release Documentation available for download at the Support & Resources page.",
+	    "NOTE: [Additions since July 29th's v2.0-rc.1] MIDI Start/Continue. MIDI Pitch Bend. Simpler CC to Knob switching. Fixed 2nd Oscillator Pitch Envelope and control Curve."
           ],
-          "file": "MetalFetishist-v2.0rc1",
-          "date": "2025-07-29",
+          "file": "MetalFetishist-v2.0rc2",
+          "date": "2025-08-19",
 	  "pre": true
         },
         {
