@@ -4,21 +4,21 @@
       "name": "Metal Fetishist",
       "releases": [
         {
-          "title": "Metal Fetishist v2.0-rc.3",
-          "release_notes": [
-            "Added ability to play the instrument via MIDI.",
-	    "Added an optional 2nd oscillator.",
-	    "Added alternative effects: Phaser, Flanger, Chorus.",
-	    "Added alternative step-modulation destinations: Volume Decay Time, Pitch Decay Amount, CutOff Decay Amount, Volume, Effect Param.",
-	    "Added alternative step sequencer lengths: 3, 5, 7, 12, 18 and 24.",
-	    "Added the ability to disable sequencer auto-start when using external clock sources.",
-	    "Added a sequencer option that enforces starting always from the first step.",
-	    "NOTE: Please check the V2 Pre-release Documentation available for download at the Support & Resources page.",
-	    "NOTE: [Additions since July 29th's v2.0-rc.1] MIDI Start/Continue. MIDI Pitch Bend. Simpler CC to Knob switching. Faster LFOs. Fixed 2nd Oscillator Pitch Envelope and control Curve."
+          "title": "Metal Fetishist v2.0",
+          "release_notes": ["Added ability to play the instrument via MIDI-enabled devices, including pitch-bend, limited MIDI CC, and MIDI channel selection.",
+            "Improved MIDI Clock Sync with separate handling of MIDI Start and MIDI Continue.",
+            "Added optional second oscillator.",
+            "Added alternative effects: Phaser, Flanger, and Chorus.",
+            "Added Dry/Wet Mixer for the Distortion & Effects section.",
+            "Added new step-modulation parameters: Volume Decay Time, Pitch Decay Amount, Cutoff Decay Amount, Volume, and Effect Parameter.",
+            "Added alternative step sequencer lengths: 3, 5, 7, 12, 18, and 24.",
+            "Added option to disable sequencer auto-start when using external clock sources.",
+            "Added sequencer mode that always starts from the first step.",
+            "Introduced a new Settings Menu to manage all new features.",
+            "Updated Manual, available for download on the Support page."
           ],
           "file": "MetalFetishist-v2.0",
-          "date": "2025-09-10",
-	  "pre": true
+          "date": "2025-09-12"
         },
         {
           "title": "Metal Fetishist v1.2",
